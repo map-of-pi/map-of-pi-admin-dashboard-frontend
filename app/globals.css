@@ -1,0 +1,37 @@
+/* Leaflet CSS */
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+/* Custom Leaflet styles */
+.leaflet-container {
+  z-index: 1;
+}
+
+.leaflet-popup-content {
+  margin: 8px;
+  font-family: inherit;
+}
+
+.leaflet-popup-content h3 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.leaflet-popup-content p {
+  margin: 4px 0;
+  font-size: 0.875rem;
+}
