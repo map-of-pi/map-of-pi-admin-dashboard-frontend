@@ -95,13 +95,17 @@ export const columns: ColumnDef<ISeller>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(seller._id)}
+              onClick={() => navigator.clipboard.writeText(seller.owner)}
             >
               Copy seller ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View seller details</DropdownMenuItem>
-            <DropdownMenuItem>Edit seller</DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            View seller details
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            Edit seller
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

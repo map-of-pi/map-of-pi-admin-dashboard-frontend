@@ -30,7 +30,7 @@ export function SellerStats() {
           <p className="text-xs text-muted-foreground">+10% from last month</p>
         </CardContent>
       </Card> */}
-      <StatsCard title="Active Sellers" count={activeSellers} percentageChange={1}/>
+      <StatsCard title="Active Sellers" count={activeSellers} percentageChange={percentageGrowthThisMonth}/>
       {/* <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">New Sellers (This Month)</CardTitle>

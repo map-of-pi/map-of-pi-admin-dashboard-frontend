@@ -71,8 +71,12 @@ export const columns: ColumnDef<IUser>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.pi_uid)}>Copy user ID</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View user details</DropdownMenuItem>
-            <DropdownMenuItem>Edit user</DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            View user details
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            Edit user
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

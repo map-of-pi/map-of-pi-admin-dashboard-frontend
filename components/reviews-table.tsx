@@ -89,8 +89,12 @@ export const columns: ColumnDef<Review>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem onClick={() => navigator.clipboard.writeText(review.id)}>Copy review ID</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View review details</DropdownMenuItem>
-            <DropdownMenuItem>Edit review</DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            View review details
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            Edit review
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
