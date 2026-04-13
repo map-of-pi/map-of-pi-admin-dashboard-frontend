@@ -11,6 +11,9 @@ import { fetchTopUserReviewStats } from "@/redux/slices/reviews"
 
 export function ReviewStats() {
   const  {reviews,totalReviews ,currentMonthReviewPercentage,currentMonthReviews} = useAppSelector(state  => state.reviews)
+  const averageRating = reviews.length > 0
+  ? (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1)
+  : 0
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
@@ -19,7 +22,7 @@ export function ReviewStats() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <StatsCard title="Total Reviews" count={totalReviews || 0} />
-      <StatsCard title="Average Rating" count={reviews.length}/>
+      <StatsCard title="Average Rating" count={Number(averageRating)}/>
       <StatsCard title="New Reviews (This Month)" percentageChange={currentMonthReviewPercentage} count={currentMonthReviews}/>
       {/* <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

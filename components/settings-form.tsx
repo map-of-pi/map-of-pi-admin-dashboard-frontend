@@ -43,7 +43,7 @@ export function SettingsForm() {
 
 
   const defaultValues: Partial<ProfileFormValues> = {
-    username: currentUser?.password,
+    username: currentUser?.username,
     email: currentUser?.email,
   }
 

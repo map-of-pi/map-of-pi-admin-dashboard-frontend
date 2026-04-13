@@ -95,13 +95,17 @@ export const columns: ColumnDef<ISeller>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(seller._id)}
+              onClick={() => navigator.clipboard.writeText(seller.owner)}
             >
               Copy seller ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View seller details</DropdownMenuItem>
-            <DropdownMenuItem>Edit seller</DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            View seller details
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled className="opacity-50 cursor-not-allowed">
+            Edit seller
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -118,9 +122,17 @@ export function SellersTable() {
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
   const  {sellers} = useAppSelector(state => state.sellers)
+  const [statusFilter, setStatusFilter] = React.useState<string>("all")
+
+  const filteredSellers = React.useMemo(
+    () => statusFilter === "all"
+    ? sellers
+    : sellers.filter(seller => seller.status === statusFilter),
+                                        [sellers, statusFilter]
+  )
 
   const table = useReactTable({
-    data:sellers,
+    data: filteredSellers,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -149,6 +161,21 @@ export function SellersTable() {
           }
           className="max-w-sm"
         />
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-2">
+              {statusFilter === "all" ? "All Status" : statusFilter === "Active" ? "Active" : "Inactive"}
+              <ChevronDown className="ml-2 h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onClick={() => setStatusFilter("all")}>All</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setStatusFilter("Active")}>Active</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setStatusFilter("Inactive")}>Inactive</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
