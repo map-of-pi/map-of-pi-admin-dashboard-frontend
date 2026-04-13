@@ -40,7 +40,11 @@ export const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): 
     }, [currentUser, isLoading, router])
 
     if (isLoading) {
-      return null // or a loading spinner
+      return (
+        <div className="flex h-screen w-full items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted border-t-primary" />
+        </div>
+      )
     }
 
     return <WrappedComponent {...(props as P)} />

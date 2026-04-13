@@ -64,7 +64,10 @@ const authSlice = createSlice({
       state.error = "";
     },
     logout(state) {
-      state.currentUser = null;
+      state.currentUser = null;  // clears the user from Redux state
+      if (typeof window !== "undefined") {  // SSR safety check — same pattern as axios
+        localStorage.removeItem("token");  // removes the JWT token from browser storage
+      }
     },
   },
   extraReducers: (builder) => {

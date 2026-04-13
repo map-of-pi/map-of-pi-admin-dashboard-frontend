@@ -80,6 +80,10 @@ export interface IAdmin  {
       coordinates: [number, number];
     };
     order_online_enabled_pref: boolean;
+    owner: string;
+    category: string;
+    rating: number;
+    status: string;
    }
   
    export interface IReviewFeedback  {
